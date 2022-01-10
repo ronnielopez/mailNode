@@ -6,6 +6,7 @@ router.get('/', (req, res) => {
     const transporter = nodemailer.createTransport({
     service: 'gmail',
     secure: false,
+    port: 587,
     auth: {
         user: process.env.CORREO,
         pass: process.env.PWD
