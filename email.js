@@ -8,8 +8,8 @@ router.get('/', (req, res) => {
     secure: false,
     port: 587,
     auth: {
-        user: process.env.CORREO,
-        pass: process.env.PWD
+        user: "innovacenterapplication@gmail.com",
+        pass: "innova123456"
     }
     });
 
