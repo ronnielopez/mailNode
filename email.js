@@ -6,8 +6,8 @@ router.get('/', (req, res) => {
     const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'innovacenterapplication@gmail.com',
-        pass: 'innova123456'
+        user: process.env.CORREO,
+        pass: process.env.PWD
     }
     });
 
@@ -23,8 +23,8 @@ router.get('/', (req, res) => {
     }
 
     const mailOptions = {
-    from: 'innovacenterapplication@gmail.com',
-    to: 'innovacenterapplication@gmail.com',
+    from: process.env.CORREO,
+    to: process.env.TOMAIL,
     subject: 'Application from InnovaCenter',
     html: "<table border='0' cellspacing='0' cellpadding='0' width='100%'>"
     + "<tbody>"
