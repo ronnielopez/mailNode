@@ -20,7 +20,7 @@ app.use(express.json());
 app.use('/api/sendEmail', require('./email'));
 
 app.get('/', (req, res) => {
-  res.send('Hello World');
+  res.send('Hello World: ' + process.env.CORREO);
 });
 
 // starting the server
