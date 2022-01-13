@@ -1,8 +1,11 @@
 const { Router } = require('express');
 const nodemailer = require('nodemailer');
+const fs = require('fs');
+var bodyParser = require('body-parser')
 const router = new Router();
 
-router.get('/', (req, res) => {
+
+router.post('/', (req, res) => {
     const transporter = nodemailer.createTransport({
     service: 'gmail',
     secure: false,
@@ -14,7 +17,7 @@ router.get('/', (req, res) => {
     });
 
     const level = (lev)=>{
-        console.log(lev)
+       // console.log(lev)
         if(lev == 1){
             return "85% english level"
         }else if(lev == 2){
@@ -23,11 +26,15 @@ router.get('/', (req, res) => {
             return "Native Speaker"
         }
     }
-
     const mailOptions = {
     from: process.env.CORREO,
     to: process.env.TOMAIL,
     subject: 'Application from InnovaCenter',
+    attachments:[{
+        filename: `CV ${req.query.firstname} ${req.query.lastname}.pdf`,
+        content: req.body.cv,
+        encoding: 'base64'
+    }],
     html: "<table border='0' cellspacing='0' cellpadding='0' width='100%'>"
     + "<tbody>"
     + "<tr>"

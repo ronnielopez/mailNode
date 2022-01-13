@@ -2,7 +2,8 @@ require('dotenv').config();
 
 const express = require('express');
 const morgan = require('morgan');
-const cors = require('cors')
+const cors = require('cors');
+var bodyParser = require('body-parser')
 const app = express();
 
 // settings
@@ -14,7 +15,7 @@ app.use(cors({
 // middlewares
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
-app.use(express.json());
+app.use(bodyParser.json({limit: '50mb'}));
 
 // routes
 app.use('/api/sendEmail', require('./email'));
